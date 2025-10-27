@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-7">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Channel</th>
+                        <th scope="col">Seasons</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Usamos (click) para llamar al método onSelect y añadimos una clase para el cursor -->
+                    <tr *ngFor="let serie of series" (click)="onSelect(serie)" class="clickable-row">
+                        <th scope="row">{{ serie.id }}</th>
+                        <td>{{ serie.name }}</td>
+                        <td>{{ serie.channel }}</td>
+                        <td>{{ serie.seasons }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Seasons average: {{ averageSeasons.toFixed(2) }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Esta sección solo se muestra si hay una serie seleccionada -->
+        <div class="col-5" *ngIf="selectedSerie">
+            <div class="card" style="width: 25rem;">
+                <img class="card-img-top" [src]="selectedSerie.poster" [alt]="selectedSerie.name">
+                <div class="card-body">
+                    <h4 class="card-title">{{ selectedSerie.name }}</h4>
+                    <p class="card-text">{{ selectedSerie.description }}</p>
+                    <a [href]="selectedSerie.webpage" target="_blank">{{ selectedSerie.webpage }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
